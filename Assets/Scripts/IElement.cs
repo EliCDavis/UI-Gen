@@ -1,10 +1,9 @@
 using UnityEngine;
-using System.IO;
-using System;
 
-public interface IElement
+namespace EliCDavis.UIGen
 {
-
-    GameObject Build(GameObject parent, AssetBundle assetBundleInstance);
-
+    public interface IElement
+    {
+        GameObject Build(GameObject parent, AssetBundle assetBundleInstance);
+    }
 }
