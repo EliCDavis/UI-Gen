@@ -12,11 +12,11 @@ namespace EliCDavis.UIGen
 
         private float max;
 
-        private UnityAction<float> onValueChanged;
+        private Action<float> onValueChanged;
 
         Func<float, string> formatter;
 
-        public SliderElement(float min, float max, Action<float> onValueChanged) : this(min ,max, onValueChanged, null)
+        public SliderElement(float min, float max, Action<float> onValueChanged) : this(min, max, onValueChanged, null)
         {
         }
 
@@ -24,17 +24,18 @@ namespace EliCDavis.UIGen
         {
             this.min = min;
             this.max = max;
-            this.onValueChanged = new UnityAction<float>(onValueChanged);
+            this.onValueChanged = onValueChanged;
             this.formatter = formatter;
         }
 
         public GameObject Build(GameObject parent, AssetBundle assetBundleInstance)
         {
             GameObject ele = null;
-            if(formatter == null)
+            if (formatter == null)
             {
                 ele = UnityEngine.Object.Instantiate(assetBundleInstance.LoadAsset<GameObject>("Slider"));
-            } else
+            }
+            else
             {
                 ele = UnityEngine.Object.Instantiate(assetBundleInstance.LoadAsset<GameObject>("Slider With Text"));
             }
@@ -44,9 +45,22 @@ namespace EliCDavis.UIGen
             slider.minValue = min;
             slider.maxValue = max;
 
-            var sliderEvent = new Slider.SliderEvent();
-            sliderEvent.AddListener(onValueChanged);
-            slider.onValueChanged = sliderEvent;
+            if (formatter == null)
+            {
+                var sliderEvent = new Slider.SliderEvent();
+                sliderEvent.AddListener(new UnityAction<float>(onValueChanged));
+                slider.onValueChanged = sliderEvent;
+            }
+            else
+            {
+                var formatEvent = new Slider.SliderEvent();
+                formatEvent.AddListener(delegate (float input)
+                {
+                    ele.transform.Find("Text").GetComponent<Text>().text = formatter(input);
+                    onValueChanged(input);
+                });
+                slider.onValueChanged = formatEvent;
+            }
 
             return ele;
         }
