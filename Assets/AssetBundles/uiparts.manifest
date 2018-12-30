@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2282010689
+CRC: 509169014
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 03457753a3f0dc56396299da081a66d5
+    Hash: c7971cbc617d6f47697f5a0c6110771d
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 544c17f6c8af7bd50a4a25a78c0b3aca
+    Hash: 974ad686a5b4a99ecd3b66a58f3f8594
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -33,10 +33,6 @@ ClassTypes:
   Script: {fileID: -113659843, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 - Class: 114
   Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-- Class: 114
-  Script: {instanceID: 0}
-- Class: 114
-  Script: {instanceID: 0}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
@@ -51,9 +47,9 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Prefabs/TextPlaceholder.prefab
-- Assets/Prefabs/Slider 2(Clone).prefab
 - Assets/Prefabs/Button.prefab
+- Assets/Prefabs/Slider With Text.prefab
 - Assets/Prefabs/Canvas.prefab
+- Assets/Prefabs/Slider.prefab
 - Assets/Prefabs/Window.prefab
-- Assets/Prefabs/Slider 2.prefab
 Dependencies: []
