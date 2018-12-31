@@ -7,14 +7,12 @@ public class Demo : MonoBehaviour
     void Start()
     {
         var windowElements = new IElement[] {
-            new TextElement("Help me"),
-            new ButtonElement("im a button", delegate () { Debug.Log("button pressed"); }),
-            new SliderElement(0, 1, delegate (float x) { Debug.Log(x); }),
-            new SliderElement(0, 1, delegate (float x) { Debug.Log(x); }, delegate (float x) { return x.ToString(); })
-		};
-        var window = new Window("test", windowElements);
+            new SliderElement(0, 1, .5f, delegate (float x) { Debug.Log(x); }, delegate (float x) { return x.ToString("0.00"); }),
+            new ButtonElement("Save", delegate () { Debug.Log("button pressed"); }),
+        };
+        var window = new Window("Set Value", windowElements);
         var view = new View(window);
-        view.Build(Vector3.zero, Vector3.zero, new Vector2(1, 3));
+        view.Build(Vector3.zero, Vector3.zero, new Vector2(1, 1.2f));
     }
 
 }

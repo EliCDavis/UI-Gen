@@ -12,7 +12,7 @@ namespace EliCDavis.UIGen
         {
             if (assetBundleInstance == null)
             {
-                assetBundleInstance = AssetBundle.LoadFromFile(Path.Combine("Assets/AssetBundles", "uiparts"));
+                assetBundleInstance = AssetBundle.LoadFromFile(Path.Combine("Assets/UIGen/AssetBundles", "uiparts"));
 
                 if (assetBundleInstance == null)
                 {

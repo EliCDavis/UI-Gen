@@ -12,18 +12,21 @@ namespace EliCDavis.UIGen
 
         private float max;
 
+        private float startingValue;
+
         private Action<float> onValueChanged;
 
         Func<float, string> formatter;
 
-        public SliderElement(float min, float max, Action<float> onValueChanged) : this(min, max, onValueChanged, null)
+        public SliderElement(float min, float max, float startingValue, Action<float> onValueChanged) : this(min, max, startingValue, onValueChanged, null)
         {
         }
 
-        public SliderElement(float min, float max, Action<float> onValueChanged, Func<float, string> formatter)
+        public SliderElement(float min, float max, float startingValue, Action<float> onValueChanged, Func<float, string> formatter)
         {
             this.min = min;
             this.max = max;
+            this.startingValue = startingValue;
             this.onValueChanged = onValueChanged;
             this.formatter = formatter;
         }
@@ -44,7 +47,7 @@ namespace EliCDavis.UIGen
             Slider slider = ele.transform.Find("Slider 1").GetComponent<Slider>();
             slider.minValue = min;
             slider.maxValue = max;
-
+            slider.value = startingValue;
             if (formatter == null)
             {
                 var sliderEvent = new Slider.SliderEvent();
@@ -53,10 +56,13 @@ namespace EliCDavis.UIGen
             }
             else
             {
+                var textComponent = ele.transform.Find("Text").GetComponent<Text>();
+                textComponent.text = formatter(slider.value);
+
                 var formatEvent = new Slider.SliderEvent();
                 formatEvent.AddListener(delegate (float input)
                 {
-                    ele.transform.Find("Text").GetComponent<Text>().text = formatter(input);
+                    textComponent.text = formatter(input);
                     onValueChanged(input);
                 });
                 slider.onValueChanged = formatEvent;
