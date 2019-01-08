@@ -10,6 +10,10 @@ namespace EliCDavis.UIGen
 
         private string title;
 
+        public Window(string title) : this(title, null)
+        {
+        }
+
         public Window(string title, IElement[] elements)
         {
             this.title = title;
@@ -22,6 +26,8 @@ namespace EliCDavis.UIGen
 
             GameObject windowInstance = GameObject.Instantiate(assetBundleInstance.LoadAsset<GameObject>("Window"));
             windowInstance.transform.SetParent(parent.transform);
+            windowInstance.transform.localPosition = Vector3.zero;
+            windowInstance.transform.localRotation = Quaternion.identity;
 
             RectTransform windowRect = windowInstance.GetComponent<RectTransform>();
             Rect pr = parent.GetComponent<RectTransform>().rect;

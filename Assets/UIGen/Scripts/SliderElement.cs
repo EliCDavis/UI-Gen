@@ -43,6 +43,8 @@ namespace EliCDavis.UIGen
                 ele = UnityEngine.Object.Instantiate(assetBundleInstance.LoadAsset<GameObject>("Slider With Text"));
             }
             ele.transform.SetParent(parent.transform);
+            ele.transform.localPosition = Vector3.zero;
+            ele.transform.localRotation = Quaternion.identity;
 
             Slider slider = ele.transform.Find("Slider 1").GetComponent<Slider>();
             slider.minValue = min;

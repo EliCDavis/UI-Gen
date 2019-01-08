@@ -28,6 +28,8 @@ namespace EliCDavis.UIGen
             ele.transform.Find("Button/Text").GetComponent<Text>().text = text;
 
             ele.transform.SetParent(parent.transform);
+            ele.transform.localPosition = Vector3.zero;
+            ele.transform.localRotation = Quaternion.identity;
             return ele;
         }
     }

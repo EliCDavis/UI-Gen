@@ -18,6 +18,8 @@ namespace EliCDavis.UIGen
             GameObject ele = GameObject.Instantiate(assetBundleInstance.LoadAsset<GameObject>("TextPlaceholder"));
             ele.GetComponent<Text>().text = text;
             ele.transform.SetParent(parent.transform);
+            ele.transform.localPosition = Vector3.zero;
+            ele.transform.localRotation = Quaternion.identity;
             return ele;
         }
 

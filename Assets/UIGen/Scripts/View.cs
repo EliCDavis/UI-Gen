@@ -30,13 +30,15 @@ namespace EliCDavis.UIGen
             this.root = root;
         }
 
-        public GameObject Build(Vector3 position, Vector3 rotation, Vector2 dimensions)
+        public GameObject Build(Vector3 position, Quaternion rotation, Vector2 dimensions)
         {
             GameObject canvas = GameObject.Instantiate(GetAssetBundleInstance().LoadAsset<GameObject>("Canvas"));
-            canvas.transform.position = position;
-            canvas.transform.eulerAngles = rotation;
-            canvas.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, dimensions.x);
-            canvas.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, dimensions.y);
+
+            RectTransform rectTransform = canvas.GetComponent<RectTransform>();
+            rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, dimensions.x);
+            rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, dimensions.y);
+            rectTransform.SetPositionAndRotation(position, rotation);
+
             root.Build(canvas, GetAssetBundleInstance());
             return canvas;
         }
